@@ -9,12 +9,6 @@ public class CustomStringMethods {
   
   // WRITE AND TEST THE METHODS BELOW
   
-    /* Client provides myString and maxLength and method returns true if the length of myString
-              exceeds maxLength, and returns false otherwise.
-  
-               Example:  If myString is apples and maxLength is 5, this method returns true.
-               Example:  If myString is apples and maxLength is 6, this method returns false.
-        */
     public boolean longerThan(String myString, int maxLength) {
     if (myString.length() > maxLength) {
         return true;
@@ -22,29 +16,65 @@ public class CustomStringMethods {
         return false;
     }
   
-    /* Client provides str and idx and method returns a new String created by appending
-              the character located at index idx of str to the beginning of str and the end of str
-  
-               Example:  If str is apples and idx is 4, this method returns the string eapplese
-               Example:  If str is apples and idx is 0, this method returns the string aapplesa
-     */
     public String funnyString(String str, int idx) {
     String character = str.substring(idx, idx + 1);  
     str = character + str + character;
     return str;
     }
   
-    /**Client provides myString and the method returns a String that represents mystring
-              with its halves reversed; strings of odd length should have the extra character be a part
-              of the second half when initially halved (and appear in the first half in the returned String).
-  
-              Example:  If myString is computers, this method should return the string uterscomp
-              Example:  If myString is "reverse me!", this method should return "e me!revers"; 
-    */
     public String halvesReversed(String myString) {
     String firstHalf = myString.substring(0, myString.length()/2);
     String secondHalf = myString.substring(myString.length()/2, myString.length());
     myString = secondHalf + firstHalf;
     return myString;
     }
+
+    public String pigLatin(String orig) {
+    String firstLetter = orig.substring(0,1);
+    orig = orig.substring(1) + firstLetter + "ay";
+    return orig;
+    }
+
+    public String removeCharacter(String myString, int removeIdx) {
+    if (removeIdx > myString.length()-1) {
+        return myString;
+    } else {
+        String word1 = myString.substring(0, removeIdx);
+        String word2 = myString.substring(removeIdx + 1);
+        myString = word1 + word2;
+        return myString; }
+    }
+
+    public String insertAt(String orig, String insertText, String searchStr) {
+    if (orig.indexOf(searchStr) == -1) {
+    return orig + insertText;
+    } else {
+      String firstWord = orig.substring(0, orig.indexOf(searchStr));
+      String secondWord = orig.substring(orig.indexOf(searchStr));
+      orig = firstWord + insertText + secondWord;
+      return orig; 
+    }
+    }
+
+    public String endUp(String myString, int numToCap) {
+    if (myString.length() < numToCap) {
+    myString = myString.toUpperCase();
+    return myString;
+    } else {
+    String toCapitalize = myString.substring(myString.length() - numToCap, myString.length());
+    toCapitalize = toCapitalize.toUpperCase();
+    myString = myString.substring(0, myString.length() - numToCap) + toCapitalize;
+    return myString;
+    }
   }
+
+    public String yellOrWhisper(String myString) {  // learned how to create a character here
+    char firstCharacter = myString.charAt(0); // https://stackoverflow.com/questions/7853502/how-to-convert-parse-from-string-to-char-in-java
+    if (Character.isUpperCase(firstCharacter)) {    // learned how to see if a character is uppercase here
+    myString = myString.toUpperCase();              // https://www.educative.io/answers/what-is-characterisuppercase-in-java
+    } else {
+    myString = myString.toLowerCase();
+    }
+    return myString;
+  }
+}
